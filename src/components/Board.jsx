@@ -1,18 +1,15 @@
-import { useState } from "react";
+import calculatedWinner from "../functions/calculatedWinner";
 import Square from "./Square";
 
-const Board = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xTurn, setXTurn] = useState(true);
-
+const Board = ({ xTurn, squares, onPlay }) => {
   const handleClick = (i) => {
     if (squares[i] || calculatedWinner(squares)) return;
 
     const nextSquares = squares.slice();
 
     nextSquares[i] = xTurn ? "X" : "O";
-    setSquares(nextSquares);
-    setXTurn(!xTurn);
+
+    onPlay(nextSquares);
   };
 
   const winner = calculatedWinner(squares);
@@ -42,29 +39,5 @@ const Board = () => {
     </>
   );
 };
-
-function calculatedWinner(squares) {
-  // add lines array that fulfill win condition
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-
-  return false;
-}
 
 export default Board;
