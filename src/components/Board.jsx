@@ -18,23 +18,24 @@ const Board = ({ xTurn, squares, onPlay }) => {
   if (winner) {
     status = "Winner: " + winner;
   } else {
-    status = (xTurn ? "X" : "O") + " Player Turn";
+    status = "Player " + (xTurn ? "X" : "O") + " Turn";
   }
+
+  let squaresComponent = [];
+  squares.forEach((square, index) => {
+    squaresComponent.push(
+      <Square
+        key={index}
+        value={square}
+        onSquareClick={() => handleClick(index)}
+      />
+    );
+  });
 
   return (
     <>
       <h1>{status}</h1>
-      <div className="board">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
+      <div className="board">{squaresComponent}</div>
     </>
   );
 };
