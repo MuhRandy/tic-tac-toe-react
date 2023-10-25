@@ -20,7 +20,6 @@ const Board = ({ xTurn, squares, onPlay }) => {
   } else {
     status = (xTurn ? "X" : "O") + " Player Turn";
   }
-  console.log(status);
 
   return (
     <>
