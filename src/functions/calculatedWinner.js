@@ -19,7 +19,9 @@ function calculatedWinner(squares) {
     }
   }
 
-  return false;
+  if (squares.includes(null)) {
+    return false;
+  } else return "draw";
 }
 
 export default calculatedWinner;

@@ -35,7 +35,9 @@ const Board = ({ xTurn, squares, onPlay }) => {
   return (
     <>
       <h1>{status}</h1>
-      <div className="board">{squaresComponent}</div>
+      <div className="flex flex-wrap w-[165px] h-[165px]">
+        {squaresComponent}
+      </div>
     </>
   );
 };
